@@ -17,3 +17,4 @@ hooks
 2. 라이브러리
 
 react-navigation
+babel-plugin-module-resolver
