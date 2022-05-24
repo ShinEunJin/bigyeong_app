@@ -14,7 +14,8 @@ views
 redux (ducks pattern)
 hooks
 
-2. 라이브러리
+2. 라이브러리 (일단 모두 안드로이드만 세팅 됨)
 
 react-navigation
 babel-plugin-module-resolver
+react-native-vector-icons
