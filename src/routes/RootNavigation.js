@@ -7,7 +7,9 @@ const Stack = createNativeStackNavigator();
 
 const RootNavigation = () => {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      screenOptions={{headerShown: false}}
+      initialRouteName="Main">
       <Stack.Screen name="Main" component={Main} />
     </Stack.Navigator>
   );
