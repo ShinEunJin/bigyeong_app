@@ -9,6 +9,8 @@ import {
   Animated,
   Pressable,
   Easing,
+  ImageSourcePropType,
+  ImageURISource,
 } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 
@@ -16,10 +18,15 @@ import Header from '@/components/Header';
 import Search from '@/components/Search';
 import {TEST_DATA} from '../../constants/test';
 
+interface TestDataType {
+  url: any;
+  id: number;
+}
+
 const MainPresenter = () => {
   const mainImageAnim = useRef(new Animated.Value(0)).current;
 
-  const scrollMainImage = height => {
+  const scrollMainImage = (height: number) => {
     Animated.timing(mainImageAnim, {
       toValue: height,
       duration: 250,
@@ -28,7 +35,7 @@ const MainPresenter = () => {
     }).start();
   };
 
-  const [img, setImg] = useState(null);
+  const [img, setImg] = useState<ImageSourcePropType>();
 
   return (
     <View style={{flex: 1}}>
@@ -82,7 +89,7 @@ const MainPresenter = () => {
       <ScrollView>
         {/* sub images */}
         <View style={styles.subImageContainer}>
-          {TEST_DATA.map(item => (
+          {TEST_DATA.map((item: TestDataType) => (
             <View key={item.id} style={styles.subImageBox}>
               <Pressable
                 onPress={() => {

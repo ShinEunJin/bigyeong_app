@@ -3,7 +3,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Main from '@/views/Main';
 
-const Stack = createNativeStackNavigator();
+type RootStackParamList = {
+  Main: undefined;
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigation = () => {
   return (
