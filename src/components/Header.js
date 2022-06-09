@@ -5,15 +5,15 @@ import IconFeather from 'react-native-vector-icons/Feather';
 const Header = () => {
   return (
     <View style={styles.headerBox}>
+      <View>
+        <IconFeather color="#000" name="menu" size={30} />
+      </View>
       <View style={styles.logoBox}>
         <Image
           source={require('@/assets/images/logo.png')}
           style={styles.logoStyle}
         />
         <Text style={styles.logoFontStyle}>BIGYEONG</Text>
-      </View>
-      <View>
-        <IconFeather color="#000" name="menu" size={30} />
       </View>
     </View>
   );

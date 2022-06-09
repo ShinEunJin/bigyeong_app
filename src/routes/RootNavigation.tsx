@@ -5,24 +5,30 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 
 import Main from '@/views/Main';
 
-type RootStackParamList = {
+type BottomTabParamList = {
+  ForPlace: undefined;
+};
+
+type ForPlaceStackParamList = {
   Main: undefined;
 };
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
-const BottomTab = createBottomTabNavigator();
+const ForPlaceStack = createNativeStackNavigator<ForPlaceStackParamList>();
+const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
 const RootNavigation = () => {
   return (
     <NavigationContainer>
-      <BottomTab.Navigator>
-        <BottomTab.Screen name="ForPlace">
+      <BottomTab.Navigator screenOptions={{headerShown: false}}>
+        <BottomTab.Screen
+          name="ForPlace"
+          options={{tabBarLabelStyle: {color: '#000'}}}>
           {() => (
-            <Stack.Navigator
+            <ForPlaceStack.Navigator
               screenOptions={{headerShown: false}}
               initialRouteName="Main">
-              <Stack.Screen name="Main" component={Main} />
-            </Stack.Navigator>
+              <ForPlaceStack.Screen name="Main" component={Main} />
+            </ForPlaceStack.Navigator>
           )}
         </BottomTab.Screen>
       </BottomTab.Navigator>
