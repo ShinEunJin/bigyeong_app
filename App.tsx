@@ -4,7 +4,7 @@ import {ApolloClient, InMemoryCache, ApolloProvider} from '@apollo/client';
 import RootNavigation from './src/routes/RootNavigation';
 
 const client = new ApolloClient({
-  uri: 'localhost:5500/graphql',
+  uri: 'https://shin.loca.lt/graphql',
   cache: new InMemoryCache(),
 });
 

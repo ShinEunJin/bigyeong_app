@@ -13,12 +13,11 @@ import {
   ImageURISource,
 } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
-import {useQuery} from '@apollo/client';
 
 import Header from '@/components/Header';
 import Search from '@/components/Search';
 import {TEST_DATA} from '../../constants/test';
-import {GET_PHOTOS} from '@/graphql/typeDefs';
+// import {GET_PHOTOS} from '@/graphql/typeDefs';
 
 interface TestDataType {
   url: any;
@@ -38,12 +37,6 @@ const MainPresenter = () => {
   };
 
   const [img, setImg] = useState<ImageSourcePropType>();
-
-  const {loading, error, data} = useQuery(GET_PHOTOS);
-
-  if (loading) console.log('loading', loading);
-  if (error) console.log('error', error);
-  if (data) console.log('data', data);
 
   return (
     <View style={{flex: 1}}>
