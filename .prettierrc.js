@@ -4,7 +4,10 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'all',
   bracketSpacing: true,
-  tabWidth: true,
   semi: true,
   proseWrap: 'preserve',
+  jsxSingleQuote: true,
+  useTabs: false,
+  endOfLine: 'auto',
+  jsxBracketSameLine: true,
 };
