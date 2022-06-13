@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import {
   Image,
   StyleSheet,
@@ -16,7 +16,7 @@ import IconEntypo from 'react-native-vector-icons/Entypo';
 
 import Header from '@/components/Header';
 import Search from '@/components/Search';
-import {TEST_DATA} from '../../constants/test';
+import { TEST_DATA } from '../../constants/test';
 // import {GET_PHOTOS} from '@/graphql/typeDefs';
 
 interface TestDataType {
@@ -39,11 +39,11 @@ const MainPresenter = () => {
   const [img, setImg] = useState<ImageSourcePropType>();
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{ flex: 1 }}>
       {/* header */}
-      <Header />
+      {/* <Header /> */}
       {/* sub-header */}
-      <View style={styles.subHeader}>
+      {/* <View style={styles.subHeader}>
         <View style={styles.categoryContainer}>
           <Text style={[styles.categoryStyle, {backgroundColor: '#cdcdcd'}]}>
             거리
@@ -53,7 +53,7 @@ const MainPresenter = () => {
         </View>
         <View style={styles.subHeaderBreakerLine}></View>
         <Search />
-      </View>
+      </View> */}
       {/* main image */}
       <Animated.View
         style={{
@@ -84,7 +84,7 @@ const MainPresenter = () => {
               marginBottom: 10,
             }}
           />
-          <IconEntypo name="menu" color="#c9c9c9" size={36} />
+          <IconEntypo name='menu' color='#c9c9c9' size={36} />
         </Pressable>
       </Animated.View>
       <ScrollView>

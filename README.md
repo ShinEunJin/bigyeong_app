@@ -25,3 +25,6 @@ stack navigation typescript 에서 type vs interface 문제가 있다.
 interface를 쓰면 'RootStackParamList' 형식이 'ParamListBase' 제약 조건을 만족하지 않습니다.
 'RootStackParamList' 형식에 인덱스 시그니처 유형 'string'이(가) 없습니다. <- 이라는 에러가 뜬다.
 ==> type vs interface 차이 정리하기
+
+220613
+DrawNavigator는 진짜 에러도 많고 마음에 안든다 제외.

@@ -5,7 +5,7 @@ import MainPresenter from './MainPresenter';
 
 const MainContainer = () => {
   const GET_PHOTOS = gql`
-    query Photos {
+    query getPhotos {
       photos {
         id
         title
@@ -18,7 +18,7 @@ const MainContainer = () => {
 
   if (loading) console.log('loading', loading);
   if (error) console.log('error', error);
-  if (data) console.log('data', data);
+  if (data) console.log('data', data.photos[0].title);
 
   return <MainPresenter />;
 };
