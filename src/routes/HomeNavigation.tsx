@@ -3,27 +3,31 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
-import Main from '@/views/Main';
-import Upload from '@/views/SideMenu/Upload';
-
-type MainStackParamList = {
-  Main: undefined;
-};
+import ToDest from '@/views/Main/ToDest';
+import ToRide from '@/views/Main/ToRide';
 
 type MainTopTabParamList = {
   ToDest: undefined;
   ToRide: undefined;
 };
 
-const MainStack = createNativeStackNavigator<MainStackParamList>();
+type MainStackParamList = {
+  MainStack: undefined;
+};
+
+type MainDrawerParamList = {
+  MainDrawer: undefined;
+};
+
 const MainTopTab = createMaterialTopTabNavigator<MainTopTabParamList>();
-const MainDrawer = createDrawerNavigator();
+const MainStack = createNativeStackNavigator<MainStackParamList>();
+const MainDrawer = createDrawerNavigator<MainDrawerParamList>();
 
 const MainTopTabComponent = () => {
   return (
     <MainTopTab.Navigator initialRouteName='ToDest'>
-      <MainTopTab.Screen name='ToDest' component={Main} />
-      <MainTopTab.Screen name='ToRide' component={Upload} />
+      <MainTopTab.Screen name='ToDest' component={ToDest} />
+      <MainTopTab.Screen name='ToRide' component={ToRide} />
     </MainTopTab.Navigator>
   );
 };
@@ -31,7 +35,7 @@ const MainTopTabComponent = () => {
 const MainStackComponent = () => {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen name='Main' component={MainTopTabComponent} />
+      <MainStack.Screen name='MainStack' component={MainTopTabComponent} />
     </MainStack.Navigator>
   );
 };
@@ -39,7 +43,7 @@ const MainStackComponent = () => {
 const HomeNavigation = () => {
   return (
     <MainDrawer.Navigator screenOptions={{ headerShown: false }}>
-      <MainDrawer.Screen name='Test' component={MainStackComponent} />
+      <MainDrawer.Screen name='MainDrawer' component={MainStackComponent} />
     </MainDrawer.Navigator>
   );
 };
