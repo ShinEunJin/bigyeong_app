@@ -27,4 +27,6 @@ interface를 쓰면 'RootStackParamList' 형식이 'ParamListBase' 제약 조건
 ==> type vs interface 차이 정리하기
 
 220613
-DrawNavigator는 진짜 에러도 많고 마음에 안든다 제외.
+DrawNavigator는 에러가 많다.
+잘됬는데도 에러가 뜨면 직접 android 디렉토리가서 ./gradlew clean으로 캐시정리 해주고 또
+npx react-native --reset -cache로 리액트네이티브 캐시도 정리해줘야 한다.
