@@ -30,3 +30,6 @@ interface를 쓰면 'RootStackParamList' 형식이 'ParamListBase' 제약 조건
 DrawNavigator는 에러가 많다.
 잘됬는데도 에러가 뜨면 직접 android 디렉토리가서 ./gradlew clean으로 캐시정리 해주고 또
 npx react-native --reset -cache로 리액트네이티브 캐시도 정리해줘야 한다.
+
+220614
+image picker

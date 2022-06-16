@@ -1,18 +1,46 @@
-import React from 'react';
-import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import React, { useCallback, useState } from 'react';
+import { launchImageLibrary, Asset } from 'react-native-image-picker';
+import { useMutation } from '@apollo/client';
+import { useFocusEffect } from '@react-navigation/native';
 
 import UploadPresenter from './UploadPresenter';
 import handlerError from '@/utils/handleError';
+import { UPLOAD_PHOTO } from '@/graphql/query';
 
 const UploadContainer = () => {
-  const uploadPhoto = async () => {
+  const [uploadPhoto, { loading, error, data }] = useMutation(UPLOAD_PHOTO);
+  const [photoInfo, setPhotoInfo] = useState<Asset | null>(null);
+
+  useFocusEffect(
+    useCallback(() => {
+      setPhotoInfo(null);
+    }, []),
+  );
+
+  const onLoadPhoto = async () => {
     // ios는 Info.plist 설정 따로 해야된다.(아직 안함)
-    const result = await launchImageLibrary({ mediaType: 'photo' });
+    const result = await launchImageLibrary({
+      mediaType: 'photo',
+    });
     if (result.errorCode || result.errorMessage)
       return handlerError.uploadPhotoError(result.errorCode);
+    if (result.assets) {
+      const galleryInfo: Asset = result.assets[0];
+      setPhotoInfo(galleryInfo);
+    }
   };
 
-  return <UploadPresenter uploadPhoto={uploadPhoto} />;
+  const onUploadPhoto = () => {
+    uploadPhoto({ variables: { photoInfo } });
+  };
+
+  return (
+    <UploadPresenter
+      onLoadPhoto={onLoadPhoto}
+      photoInfo={photoInfo}
+      onUploadPhoto={onUploadPhoto}
+    />
+  );
 };
 
 export default UploadContainer;
