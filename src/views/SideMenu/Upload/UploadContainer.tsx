@@ -1,14 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { launchImageLibrary, Asset } from 'react-native-image-picker';
-import { useMutation } from '@apollo/client';
 import { useFocusEffect } from '@react-navigation/native';
 
 import UploadPresenter from './UploadPresenter';
 import handlerError from '@/utils/handleError';
-import { UPLOAD_PHOTO } from '@/graphql/query';
 
 const UploadContainer = () => {
-  const [uploadPhoto, { loading, error, data }] = useMutation(UPLOAD_PHOTO);
   const [photoInfo, setPhotoInfo] = useState<Asset | null>(null);
 
   useFocusEffect(
@@ -30,9 +27,7 @@ const UploadContainer = () => {
     }
   };
 
-  const onUploadPhoto = () => {
-    uploadPhoto({ variables: { photoInfo } });
-  };
+  const onUploadPhoto = () => {};
 
   return (
     <UploadPresenter
