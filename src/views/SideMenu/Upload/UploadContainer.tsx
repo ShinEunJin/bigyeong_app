@@ -42,20 +42,15 @@ const UploadContainer = () => {
       type: file?.type,
       uri: file?.uri,
     });
-    for (let key of formData['_parts'].entries()) {
-      console.log(key[0], key[1]);
-    }
-    // setTimeout(() => {
-    //   for (let part of formData.keys()) {
-    //     console.log(part[0], '-', part[1]);
-    //   }
-    // }, 5000);
-    // const result = await axios.post('https://shin.loca.lt/api/file', formData, {
-    //   headers: { 'Content-Type': 'multipart/form-data' },
-    //   maxContentLength: Infinity,
-    //   maxBodyLength: Infinity,
-    // });
-    // console.log('result', result.data);
+    // for (let key of formData['_parts'].entries()) {
+    //   console.log(key[0], key[1]);
+    // }
+    const result = await axios.post('https://shin.loca.lt/api/file', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity,
+    });
+    console.log('result', result.data);
   };
 
   return (
