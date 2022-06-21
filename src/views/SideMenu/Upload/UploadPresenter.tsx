@@ -5,7 +5,7 @@ import { Asset } from 'react-native-image-picker';
 interface UploadProps {
   onLoadPhoto: () => void;
   onUploadPhoto: () => void;
-  photoInfo: Asset | null;
+  photoInfo: { path: string } | null;
 }
 
 const UploadPresenter = (props: UploadProps) => {
@@ -19,7 +19,7 @@ const UploadPresenter = (props: UploadProps) => {
           <Image
             fadeDuration={200}
             style={styles.imageStyle}
-            source={{ uri: props.photoInfo.uri }}
+            source={{ uri: props.photoInfo.path }}
           />
           <Pressable style={styles.uploadBtn} onPress={props.onUploadPhoto}>
             <Text>Upload</Text>
@@ -44,8 +44,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#1B2430',
   },
   imageStyle: {
-    width: 360,
-    height: 500,
+    width: '90%',
+    height: '40%',
     borderRadius: 15,
   },
 });
