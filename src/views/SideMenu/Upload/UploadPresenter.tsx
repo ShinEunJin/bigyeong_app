@@ -1,14 +1,29 @@
-import React, { ReactComponentElement } from 'react';
-import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
-import { Asset } from 'react-native-image-picker';
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Image,
+  Dimensions,
+} from 'react-native';
 
 interface UploadProps {
   onLoadPhoto: () => void;
   onUploadPhoto: () => void;
-  photoInfo: { path: string } | null;
+  photoUiWidth: number;
+  photoUiHeight: number;
+  photoInfo: {
+    path?: string;
+    width: number;
+    height: number;
+    uri?: string;
+  } | null;
 }
 
 const UploadPresenter = (props: UploadProps) => {
+  const { width: screenWidth, height: screenHeight } = Dimensions.get('screen');
+
   return (
     <View style={styles.container}>
       <Pressable style={styles.uploadBtn} onPress={props.onLoadPhoto}>
@@ -18,8 +33,18 @@ const UploadPresenter = (props: UploadProps) => {
         <>
           <Image
             fadeDuration={200}
-            style={styles.imageStyle}
-            source={{ uri: props.photoInfo.path }}
+            style={[
+              styles.imageStyle,
+              {
+                width: props.photoUiWidth,
+                height: props.photoUiHeight,
+              },
+            ]}
+            source={{
+              uri: props.photoInfo.uri
+                ? props.photoInfo.uri
+                : props.photoInfo.path,
+            }}
           />
           <Pressable style={styles.uploadBtn} onPress={props.onUploadPhoto}>
             <Text>Upload</Text>
@@ -44,8 +69,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#1B2430',
   },
   imageStyle: {
-    width: '90%',
-    height: '40%',
     borderRadius: 15,
   },
 });
