@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import {
   StyleSheet,
   Text,
@@ -6,7 +6,7 @@ import {
   Pressable,
   Image,
   Dimensions,
-  Animated,
+  ActivityIndicator,
 } from 'react-native';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 
@@ -14,6 +14,7 @@ interface UploadProps {
   onLoadPhoto: () => void;
   onUploadPhoto: () => void;
   onDeletePhoto: () => void;
+  loading: boolean;
   photoUiWidth: number;
   photoUiHeight: number;
   photo: {
@@ -21,15 +22,22 @@ interface UploadProps {
     width: number;
     height: number;
   } | null;
-  progressPercent: number;
-  progressAnim: any;
 }
 
 const UploadPresenter = (props: UploadProps) => {
-  const { width: screenWidth, height: screenHeight } = Dimensions.get('screen');
+  const { width: screenW, height: screenH } = Dimensions.get('screen');
 
   return (
     <View style={styles.container}>
+      {props.loading && (
+        <View
+          style={[
+            styles.loadingContainer,
+            { width: screenW, height: screenH },
+          ]}>
+          <ActivityIndicator size='large' color='#000' />
+        </View>
+      )}
       {props.photo ? (
         <View>
           <Image
@@ -68,15 +76,6 @@ const UploadPresenter = (props: UploadProps) => {
           <Text>Upload</Text>
         </Pressable>
       )}
-      {props.progressPercent > 0 && (
-        <View style={styles.progressBarBox}>
-          <Animated.View
-            style={[
-              styles.progressBarGauge,
-              { width: props.progressAnim },
-            ]}></Animated.View>
-        </View>
-      )}
     </View>
   );
 };
@@ -87,6 +86,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     paddingTop: 70,
+  },
+  loadingContainer: {
+    position: 'absolute',
+    opacity: 0.9,
+    backgroundColor: '#fff',
+    zIndex: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   onLoadContainer: {
     borderRadius: 15,

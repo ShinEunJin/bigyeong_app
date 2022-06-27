@@ -7,10 +7,12 @@ import axios from 'axios';
 import UploadPresenter from './UploadPresenter';
 import handlerError from '@/utils/handleError';
 import constants from '@/config/constants';
+import { uploadPhoto } from '@/api/photo';
 
 const UploadContainer = () => {
   const [photo, setPhoto] = useState<any>();
   const [progressPercent, setProgressPercent] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const progressAnim = useRef(new Animated.Value(0)).current;
 
@@ -43,7 +45,9 @@ const UploadContainer = () => {
   };
 
   const onUploadPhoto = async () => {
+    console.log('click');
     console.log(photo);
+    setLoading(true);
     const file = photo;
     const formData = new FormData();
     formData.append('testFile', {
@@ -51,41 +55,22 @@ const UploadContainer = () => {
       type: file.mime,
       uri: file.path,
     });
-    try {
-      const result = await axios.post(
-        'https://e965-175-117-160-220.jp.ngrok.io/api/v1/photo',
-        formData,
-        {
-          headers: { 'Content-Type': 'multipart/form-data' },
-          maxContentLength: 1024 * 1024 * 5,
-          maxBodyLength: 1024 * 1024 * 5,
-          onUploadProgress: (e: { loaded: number; total: number }) => {
-            const percent = Math.round((e.loaded * 100) / e.total);
-            console.log(percent);
-            setProgressPercent(percent);
-            Animated.timing(progressAnim, {
-              toValue: percent * 3.58,
-              duration: 300,
-              useNativeDriver: false,
-            }).start();
-          },
-        },
-      );
-    } catch (error) {
-      console.log({ error });
+    const result = await uploadPhoto(formData);
+    if (result) {
+      setLoading(false);
+      setPhoto(null);
     }
   };
 
   return (
     <UploadPresenter
       photo={photo}
+      loading={loading}
       onLoadPhoto={onLoadPhoto}
       onUploadPhoto={onUploadPhoto}
       onDeletePhoto={onDeletePhoto}
       photoUiWidth={constants.photoSpec.PHOTO_UI_WIDTH}
       photoUiHeight={constants.photoSpec.PHOTO_UI_HEIGHT}
-      progressPercent={progressPercent}
-      progressAnim={progressAnim}
     />
   );
 };
