@@ -10,9 +10,11 @@ interface reqParams {
 
 const baseURL = __DEV__ ? env.DEV_URL : env.PROD_URL;
 
-const instance = axios.create({
+const axiosInstance = axios.create({
   baseURL,
   timeout: 10000,
 });
 
 const req = async ({ method, url, data, headers }: reqParams) => {};
+
+export default axiosInstance;
