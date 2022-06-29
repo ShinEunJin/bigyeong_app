@@ -7,7 +7,9 @@ import {
   Image,
   Dimensions,
   ActivityIndicator,
+  TextInput,
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import IconEntypo from 'react-native-vector-icons/Entypo';
 
 interface UploadProps {
@@ -22,13 +24,21 @@ interface UploadProps {
     width: number;
     height: number;
   } | null;
+  title: string;
+  location: string;
+  detailLocation: string;
+  description: string;
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setLocation: React.Dispatch<React.SetStateAction<string>>;
+  setDetailLocation: React.Dispatch<React.SetStateAction<string>>;
+  setDescription: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const UploadPresenter = (props: UploadProps) => {
   const { width: screenW, height: screenH } = Dimensions.get('screen');
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       {props.loading && (
         <View
           style={[
@@ -76,16 +86,45 @@ const UploadPresenter = (props: UploadProps) => {
           <Text>Upload</Text>
         </Pressable>
       )}
-    </View>
+      <View>
+        <TextInput
+          style={styles.textInputStyle}
+          onChangeText={props.setTitle}
+          value={props.title}
+          placeholder='title'
+          placeholderTextColor='#C499BA'
+        />
+        <TextInput
+          style={styles.textInputStyle}
+          onChangeText={props.setLocation}
+          value={props.location}
+          placeholder='location'
+          placeholderTextColor='#C499BA'
+        />
+        <TextInput
+          style={styles.textInputStyle}
+          onChangeText={props.setDetailLocation}
+          value={props.detailLocation}
+          placeholder='detailLocation'
+          placeholderTextColor='#C499BA'
+        />
+        <TextInput
+          style={styles.textInputStyle}
+          onChangeText={props.setDescription}
+          value={props.description}
+          placeholder='description'
+          placeholderTextColor='#C499BA'
+        />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 20,
+    flexGrow: 1,
     alignItems: 'center',
-    paddingTop: 70,
+    paddingVertical: 50,
   },
   loadingContainer: {
     position: 'absolute',
@@ -142,17 +181,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 30,
   },
-  progressBarBox: {
-    width: 360,
-    height: 60,
-    borderRadius: 15,
-    borderWidth: 1,
-    borderColor: '#82A284',
-  },
-  progressBarGauge: {
-    height: 58,
-    borderRadius: 15,
-    backgroundColor: '#00FFAB',
+  textInputStyle: {
+    elevation: 1,
+    color: '#000',
+    width: 200,
+    height: 50,
+    paddingLeft: 10,
+    textAlignVertical: 'center',
+    paddingVertical: 0,
   },
 });
 

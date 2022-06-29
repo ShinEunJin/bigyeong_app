@@ -1,7 +1,7 @@
 import axiosInstance from './index';
 import routes from './routes';
 
-export const uploadPhoto = async (formData: FormData) => {
+export const uploadPhoto = async (formData: any) => {
   try {
     const result = await axiosInstance.post(routes.photo, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
