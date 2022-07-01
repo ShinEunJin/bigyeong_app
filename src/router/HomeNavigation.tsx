@@ -27,7 +27,9 @@ const MainDrawer = createDrawerNavigator<MainDrawerParamList>();
 
 const MainTopTabComponent = () => {
   return (
-    <MainTopTab.Navigator initialRouteName='ToDest'>
+    <MainTopTab.Navigator
+      initialRouteName='ToDest'
+      screenOptions={{ swipeEnabled: false }}>
       <MainTopTab.Screen name='ToDest' component={ToDest} />
       <MainTopTab.Screen name='ToRide' component={ToRide} />
     </MainTopTab.Navigator>

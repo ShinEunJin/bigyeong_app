@@ -68,6 +68,7 @@ const UploadContainer = () => {
     setLoading(true);
     const result = await uploadPhoto(formData);
     if (result) {
+      console.log('result', result);
       setLoading(false);
       setPhoto(null);
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import RootNavigation from './src/routes/RootNavigation';
+import RootNavigation from './src/router/RootNavigation';
 
 const App = () => {
   return <RootNavigation />;

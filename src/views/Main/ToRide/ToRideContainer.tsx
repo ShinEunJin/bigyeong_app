@@ -1,15 +1,29 @@
-import React, { useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 
 import ToRidePresenter from './ToRidePresenter';
 import { getPhotos } from '@/api/photo';
+import constants from '@/config/constants';
+
+export interface PhotoType {
+  _id: string;
+  category: 'TORIDE' | 'TODEST';
+  imageUri: string;
+  title: string;
+  location: string;
+  detailLocation: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 const ToRideContainer = () => {
+  const [data, setData] = useState<PhotoType[] | null>(null);
+
   const displayPhotos = async () => {
-    const result = await getPhotos();
-    if (result) {
-      console.log(result);
-    }
+    const result: PhotoType[] = await getPhotos();
+    if (result && result.length > 0) setData(result);
+    else setData(null);
   };
 
   useFocusEffect(
@@ -18,7 +32,12 @@ const ToRideContainer = () => {
     }, []),
   );
 
-  return <ToRidePresenter />;
+  return (
+    <ToRidePresenter
+      data={data}
+      photoUiWidth={constants.photoSpec.PHOTO_UI_WIDTH}
+    />
+  );
 };
 
 export default ToRideContainer;
