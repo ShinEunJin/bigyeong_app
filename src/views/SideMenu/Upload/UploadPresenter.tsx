@@ -28,10 +28,12 @@ interface UploadProps {
   location: string;
   detailLocation: string;
   description: string;
+  category: null | 'TORIDE' | 'TODEST';
   setTitle: React.Dispatch<React.SetStateAction<string>>;
   setLocation: React.Dispatch<React.SetStateAction<string>>;
   setDetailLocation: React.Dispatch<React.SetStateAction<string>>;
   setDescription: React.Dispatch<React.SetStateAction<string>>;
+  setCategory: React.Dispatch<React.SetStateAction<'TORIDE' | 'TODEST' | null>>;
 }
 
 const UploadPresenter = (props: UploadProps) => {
@@ -115,6 +117,26 @@ const UploadPresenter = (props: UploadProps) => {
           placeholder='description'
           placeholderTextColor='#C499BA'
         />
+        <View style={styles.categoryInputContainer}>
+          <Pressable onPress={() => props.setCategory('TODEST')}>
+            <Text
+              style={[
+                styles.categoryInputText,
+                { opacity: props.category === 'TODEST' ? 1 : 0.3 },
+              ]}>
+              ToDest
+            </Text>
+          </Pressable>
+          <Pressable onPress={() => props.setCategory('TORIDE')}>
+            <Text
+              style={[
+                styles.categoryInputText,
+                { opacity: props.category === 'TORIDE' ? 1 : 0.3 },
+              ]}>
+              ToRide
+            </Text>
+          </Pressable>
+        </View>
       </View>
     </ScrollView>
   );
@@ -127,6 +149,7 @@ const styles = StyleSheet.create({
     paddingVertical: 50,
   },
   loadingContainer: {
+    flex: 1,
     position: 'absolute',
     opacity: 0.9,
     backgroundColor: '#fff',
@@ -189,6 +212,17 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     textAlignVertical: 'center',
     paddingVertical: 0,
+  },
+  categoryInputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: 10,
+  },
+  categoryInputText: {
+    padding: 10,
+    backgroundColor: '#DCD7C9',
+    borderRadius: 5,
+    color: '#3F4E4F',
   },
 });
 

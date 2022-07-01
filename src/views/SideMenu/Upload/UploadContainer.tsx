@@ -15,6 +15,7 @@ const UploadContainer = () => {
   const [location, setLocation] = useState('');
   const [detailLocation, setDetailLocation] = useState('');
   const [description, setDescription] = useState('');
+  const [category, setCategory] = useState<null | 'TORIDE' | 'TODEST'>(null);
 
   useFocusEffect(
     useCallback(() => {
@@ -35,7 +36,6 @@ const UploadContainer = () => {
         height: constants.photoSpec.PHOTO_LOAD_HEIGHT,
         mediaType: 'photo',
       });
-      console.log(originalImage);
       if (originalImage) {
         setPhoto(originalImage);
       }
@@ -53,12 +53,19 @@ const UploadContainer = () => {
     if (location.trim() === '') return warnBlank('위치 공백');
     if (detailLocation.trim() === '') return warnBlank('상세위치 공백');
     if (description.trim() === '') return warnBlank('설명 공백');
+    if (!category) return warnBlank('카테고리 설정');
     const file = photo;
     const formData = new FormData();
     // server multer 때문에 file이 제일 마지막으로 formData에 넣어서 보내야 한다.
     formData.append(
       'data',
-      JSON.stringify({ title, location, detailLocation, description }),
+      JSON.stringify({
+        title,
+        location,
+        detailLocation,
+        description,
+        category,
+      }),
     );
     formData.append('photo', {
       name: file.modificationDate,
@@ -87,10 +94,12 @@ const UploadContainer = () => {
       setLocation={setLocation}
       setDetailLocation={setDetailLocation}
       setDescription={setDescription}
+      setCategory={setCategory}
       title={title}
       location={location}
       detailLocation={detailLocation}
       description={description}
+      category={category}
     />
   );
 };

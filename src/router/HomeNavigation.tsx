@@ -7,7 +7,7 @@ import ToDest from '@/views/Main/ToDest';
 import ToRide from '@/views/Main/ToRide';
 import Upload from '@/views/SideMenu/Upload';
 
-type MainTopTabParamList = {
+export type MainTopTabParamList = {
   ToDest: undefined;
   ToRide: undefined;
 };

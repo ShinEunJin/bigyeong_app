@@ -1,9 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { useFocusEffect } from '@react-navigation/native';
+import { RouteProp, useFocusEffect } from '@react-navigation/native';
 
 import ToRidePresenter from './ToRidePresenter';
 import { getPhotos } from '@/api/photo';
 import constants from '@/config/constants';
+import { MainTopTabParamList } from '@/router/HomeNavigation';
 
 export interface PhotoType {
   _id: string;
@@ -17,11 +18,17 @@ export interface PhotoType {
   updatedAt: string;
 }
 
-const ToRideContainer = () => {
+type ToRideProps = {
+  route: RouteProp<MainTopTabParamList, 'ToRide'>;
+};
+
+const ToRideContainer = ({ route }: ToRideProps) => {
   const [data, setData] = useState<PhotoType[] | null>(null);
 
   const displayPhotos = async () => {
-    const result: PhotoType[] = await getPhotos();
+    const result: PhotoType[] = await getPhotos({
+      category: route.name === 'ToRide' ? 'TORIDE' : 'TODEST',
+    });
     if (result && result.length > 0) setData(result);
     else setData(null);
   };

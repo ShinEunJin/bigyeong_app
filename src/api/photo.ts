@@ -12,9 +12,9 @@ export const uploadPhoto = async (formData: any) => {
   }
 };
 
-export const getPhotos = async () => {
+export const getPhotos = async (params: { category: 'TODEST' | 'TORIDE' }) => {
   try {
-    const result = await axiosInstance.get(routes.photos);
+    const result = await axiosInstance.get(routes.photos, { params });
     if (result.data) return result.data;
   } catch (error) {
     return { error };

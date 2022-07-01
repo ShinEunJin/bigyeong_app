@@ -31,13 +31,12 @@ const styles = StyleSheet.create({
     paddingVertical: 50,
   },
   itemBox: {
-    flex: 1,
     height: 360,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20,
     marginBottom: 30,
-    backgroundColor: 'green',
+    backgroundColor: '#F9F2ED',
   },
   itemImage: {
     width: '100%',
