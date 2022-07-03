@@ -6,6 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import ToDest from '@/views/Main/ToDest';
 import ToRide from '@/views/Main/ToRide';
 import Upload from '@/views/SideMenu/Upload';
+import Header from '@/components/Header';
 
 export type MainTopTabParamList = {
   ToDest: undefined;
@@ -39,14 +40,19 @@ const MainTopTabComponent = () => {
 const MainStackComponent = () => {
   return (
     <MainStack.Navigator>
-      <MainStack.Screen name='MainTopTab' component={MainTopTabComponent} />
+      <MainStack.Screen
+        name='MainTopTab'
+        component={MainTopTabComponent}
+        options={{ header: () => <Header /> }}
+      />
     </MainStack.Navigator>
   );
 };
 
 const HomeNavigation = () => {
   return (
-    <MainDrawer.Navigator screenOptions={{ headerShown: false }}>
+    <MainDrawer.Navigator
+      screenOptions={{ headerShown: false, drawerPosition: 'right' }}>
       <MainDrawer.Screen name='MainStack' component={MainStackComponent} />
       <MainDrawer.Screen name='Upload' component={Upload} />
     </MainDrawer.Navigator>
