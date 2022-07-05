@@ -1,5 +1,5 @@
 import axios from 'axios';
-import env from '@/config/env';
+import Config from 'react-native-config';
 
 interface reqParams {
   method: 'get' | 'post' | 'put' | 'patch' | 'delete';
@@ -8,7 +8,7 @@ interface reqParams {
   headers?: {};
 }
 
-const baseURL = __DEV__ ? env.DEV_URL : env.PROD_URL;
+const baseURL = Config.API_URL;
 
 const axiosInstance = axios.create({
   baseURL,
