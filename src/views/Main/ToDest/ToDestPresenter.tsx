@@ -1,10 +1,18 @@
 import React from 'react';
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import { PhotoType } from './ToDestContainer';
 
 type ToDestPropsType = {
   data: PhotoType[] | null;
   photoUiWidth: number;
+  onPressDetail: (id: string) => void;
 };
 
 const ToDestPresenter = (props: ToDestPropsType) => {
@@ -13,12 +21,17 @@ const ToDestPresenter = (props: ToDestPropsType) => {
       {props.data &&
         props.data.length >= 1 &&
         props.data.map((item, idx) => (
-          <View
+          <Pressable
             key={idx}
+            onPress={() => props.onPressDetail(item._id)}
             style={[styles.itemBox, { width: props.photoUiWidth }]}>
-            <Image source={{ uri: item.imageUri }} style={styles.itemImage} />
+            <Image
+              resizeMode='contain'
+              source={{ uri: item.imageUri }}
+              style={styles.itemImage}
+            />
             <View style={styles.itemImageCover}></View>
-          </View>
+          </Pressable>
         ))}
     </ScrollView>
   );
@@ -40,13 +53,15 @@ const styles = StyleSheet.create({
   itemImage: {
     width: '100%',
     height: '100%',
-    borderRadius: 20,
-    overflow: 'hidden',
   },
   itemImageCover: {
     width: '100%',
     height: '100%',
     position: 'absolute',
+    borderBottomColor: 'gray',
+    borderBottomWidth: 0.5,
+    opacity: 0.6,
+    borderTopWidth: 0.5,
   },
 });
 

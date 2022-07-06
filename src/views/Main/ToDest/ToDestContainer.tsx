@@ -1,10 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { RouteProp, useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import ToDestPresenter from './ToDestPresenter';
 import { getPhotos } from '@/api/photo';
 import constants from '@/config/constants';
-import { MainTopTabParamList } from '@/router/HomeNavigation';
 
 export interface PhotoType {
   _id: string;
@@ -18,12 +17,12 @@ export interface PhotoType {
   updatedAt: string;
 }
 
-type ToDestProps = {
-  route: RouteProp<MainTopTabParamList, 'ToDest'>;
-};
-
-const ToDestContainer = ({ route }: ToDestProps) => {
+const ToDestContainer = ({ route, navigation }) => {
   const [data, setData] = useState<PhotoType[] | null>(null);
+
+  const onPressDetail = (id: string) => {
+    navigation.navigate('Detail', { screen: 'ToDestDetail', id });
+  };
 
   const displayPhotos = async () => {
     const result: PhotoType[] = await getPhotos({
@@ -43,6 +42,7 @@ const ToDestContainer = ({ route }: ToDestProps) => {
     <ToDestPresenter
       data={data}
       photoUiWidth={constants.photoSpec.PHOTO_UI_WIDTH}
+      onPressDetail={onPressDetail}
     />
   );
 };
