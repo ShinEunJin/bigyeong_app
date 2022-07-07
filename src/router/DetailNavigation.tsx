@@ -1,22 +1,16 @@
+import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import ToDestDetail from '@/views/Detail';
 
-type ToDestDetailStackParamList = {
-  ToDestDetail: { id: string };
+const DetailStack = createNativeStackNavigator();
+
+const DetailNavigation = () => {
+  return (
+    <DetailStack.Navigator>
+      <DetailStack.Screen name='ToDestDetail' component={ToDestDetail} />
+    </DetailStack.Navigator>
+  );
 };
 
-export type ToDestDetailProps = NativeStackScreenProps<
-  ToDestDetailStackParamList,
-  'ToDestDetail'
->;
-
-const ToDestDetailStack =
-  createNativeStackNavigator<ToDestDetailStackParamList>();
-
-const ToDestDetailNavigation = () => {
-  <ToDestDetailStack.Screen name='ToDestDetail' component={ToDestDetail} />;
-};
-
-export default ToDestDetailNavigation;
+export default DetailNavigation;

@@ -3,15 +3,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeNavigation from './HomeNavigation';
-import DetailNavigation from '@/views/Detail';
+import DetailNavigation from './DetailNavigation';
+import { RootStackParamList } from './types';
 
-type MainStackNavigatorTypes = {
-  Home: undefined;
-  Detail: { id: string; type: 'TODEST' | 'TORIDE' };
-};
-
-const MainStackNavigator =
-  createNativeStackNavigator<MainStackNavigatorTypes>();
+const MainStackNavigator = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigation = () => {
   return (

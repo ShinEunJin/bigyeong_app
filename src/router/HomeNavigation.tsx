@@ -8,23 +8,9 @@ import ToRide from '@/views/Main/ToRide';
 import Upload from '@/views/SideMenu/Upload';
 import Header from '@/components/Header';
 
-export type MainTopTabParamList = {
-  ToDest: undefined;
-  ToRide: undefined;
-};
-
-type MainStackParamList = {
-  MainTopTab: undefined;
-};
-
-type MainDrawerParamList = {
-  MainStack: undefined;
-  Upload: undefined;
-};
-
-const MainTopTab = createMaterialTopTabNavigator<MainTopTabParamList>();
-const MainStack = createNativeStackNavigator<MainStackParamList>();
-const MainDrawer = createDrawerNavigator<MainDrawerParamList>();
+const MainTopTab = createMaterialTopTabNavigator();
+const MainStack = createNativeStackNavigator();
+const HomeDrawer = createDrawerNavigator();
 
 const MainTopTabComponent = () => {
   return (
@@ -41,7 +27,7 @@ const MainStackComponent = () => {
   return (
     <MainStack.Navigator>
       <MainStack.Screen
-        name='MainTopTab'
+        name='HomeTopTab'
         component={MainTopTabComponent}
         options={{ header: () => <Header /> }}
       />
@@ -51,11 +37,11 @@ const MainStackComponent = () => {
 
 const HomeNavigation = () => {
   return (
-    <MainDrawer.Navigator
+    <HomeDrawer.Navigator
       screenOptions={{ headerShown: false, drawerPosition: 'right' }}>
-      <MainDrawer.Screen name='MainStack' component={MainStackComponent} />
-      <MainDrawer.Screen name='Upload' component={Upload} />
-    </MainDrawer.Navigator>
+      <HomeDrawer.Screen name='HomeStack' component={MainStackComponent} />
+      <HomeDrawer.Screen name='Upload' component={Upload} />
+    </HomeDrawer.Navigator>
   );
 };
 
