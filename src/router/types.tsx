@@ -1,3 +1,4 @@
+import { MaterialTopTabScreenProps } from '@react-navigation/material-top-tabs';
 import {
   NavigatorScreenParams,
   CompositeScreenProps,
@@ -5,13 +6,15 @@ import {
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type HomeDrawerParamList = {
-  HomeStack: HomeStackParamList;
-  upload: undefined;
+  HomeTopTab: NavigatorScreenParams<HomeTopTabParamList>;
+  Upload: undefined;
 };
 
-export type HomeStackParamList = {
-  HomeTopTab: HomeTopTabParamList;
-};
+export type HomeTobTabScreenProps<T extends keyof HomeTopTabParamList> =
+  CompositeScreenProps<
+    MaterialTopTabScreenProps<HomeTopTabParamList, T>,
+    NativeStackScreenProps<RootStackParamList, 'Detail'>
+  >;
 
 export type HomeTopTabParamList = {
   ToDest: undefined;
@@ -19,15 +22,10 @@ export type HomeTopTabParamList = {
 };
 
 export type DetailParamList = {
-  ToDestDetail: undefined;
+  ToDestDetail: { id: string };
 };
 
-export type ToDestDetailNavigationProp = CompositeScreenProps<
-  NativeStackScreenProps<RootStackParamList, 'Detail'>,
-  NativeStackScreenProps<DetailParamList, 'ToDestDetail'>
->;
-
 export type RootStackParamList = {
-  Home: undefined;
+  Home: NavigatorScreenParams<HomeDrawerParamList>;
   Detail: NavigatorScreenParams<DetailParamList>;
 };

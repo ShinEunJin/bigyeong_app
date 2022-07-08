@@ -4,6 +4,7 @@ import { useFocusEffect } from '@react-navigation/native';
 import ToDestPresenter from './ToDestPresenter';
 import { getPhotos } from '@/api/photo';
 import constants from '@/config/constants';
+import { HomeTobTabScreenProps } from '@/router/types';
 
 export interface PhotoType {
   _id: string;
@@ -17,11 +18,17 @@ export interface PhotoType {
   updatedAt: string;
 }
 
-const ToDestContainer = ({ navigation, route }) => {
+const ToDestContainer = ({
+  navigation,
+  route,
+}: HomeTobTabScreenProps<'ToDest'>) => {
   const [data, setData] = useState<PhotoType[] | null>(null);
 
   const onPressDetail = (id: string) => {
-    navigation.navigate('Detail', { screen: 'ToDestDetail', id });
+    navigation.navigate('Detail', {
+      screen: 'ToDestDetail',
+      params: { id },
+    });
   };
 
   const displayPhotos = async () => {
