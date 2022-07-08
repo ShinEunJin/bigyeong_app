@@ -4,7 +4,6 @@ import { RouteProp, useFocusEffect } from '@react-navigation/native';
 import ToRidePresenter from './ToRidePresenter';
 import { getPhotos } from '@/api/photo';
 import constants from '@/config/constants';
-import { MainTopTabParamList } from '@/router/HomeNavigation';
 
 export interface PhotoType {
   _id: string;
@@ -17,10 +16,6 @@ export interface PhotoType {
   createdAt: string;
   updatedAt: string;
 }
-
-type ToRideProps = {
-  route: RouteProp<MainTopTabParamList, 'ToRide'>;
-};
 
 const ToRideContainer = ({ route }: ToRideProps) => {
   const [data, setData] = useState<PhotoType[] | null>(null);

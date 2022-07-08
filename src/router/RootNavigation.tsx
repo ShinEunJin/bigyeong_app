@@ -6,15 +6,15 @@ import HomeNavigation from './HomeNavigation';
 import DetailNavigation from './DetailNavigation';
 import { RootStackParamList } from './types';
 
-const MainStackNavigator = createNativeStackNavigator<RootStackParamList>();
+const RootStackNavigator = createNativeStackNavigator<RootStackParamList>();
 
 const RootNavigation = () => {
   return (
     <NavigationContainer>
-      <MainStackNavigator.Navigator screenOptions={{ headerShown: false }}>
-        <MainStackNavigator.Screen name='Home' component={HomeNavigation} />
-        <MainStackNavigator.Screen name='Detail' component={DetailNavigation} />
-      </MainStackNavigator.Navigator>
+      <RootStackNavigator.Navigator screenOptions={{ headerShown: false }}>
+        <RootStackNavigator.Screen name='Home' component={HomeNavigation} />
+        <RootStackNavigator.Screen name='Detail' component={DetailNavigation} />
+      </RootStackNavigator.Navigator>
     </NavigationContainer>
   );
 };
