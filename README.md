@@ -33,3 +33,7 @@ npx react-native --reset -cache로 리액트네이티브 캐시도 정리해줘�
 
 220614
 image picker
+
+220709
+종종 android 실행할 때 네이티브 에러가 난다. build 안 파일이 꼬여서 그렇다.
+packagejson 명령어 수정 rm -r ./android/app/build && react-native run-android
