@@ -25,6 +25,11 @@ export type DetailParamList = {
   ToDestDetail: { id: string };
 };
 
+export type DetailScreenProps = NativeStackScreenProps<
+  DetailParamList,
+  'ToDestDetail'
+>;
+
 export type RootStackParamList = {
   Home: NavigatorScreenParams<HomeDrawerParamList>;
   Detail: NavigatorScreenParams<DetailParamList>;

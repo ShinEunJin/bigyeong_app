@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import { PhotoType } from './ToDestContainer';
+import { PhotoType } from '@/types';
 
 type ToDestPropsType = {
   data: PhotoType[] | null;

@@ -20,3 +20,15 @@ export const getPhotos = async (params: { category: 'TODEST' | 'TORIDE' }) => {
     return { error };
   }
 };
+
+export const getPhoto = async (params: {
+  category: 'TODEST' | 'TORIDE';
+  id: string;
+}) => {
+  try {
+    const result = await axiosInstance.get(routes.photo, { params });
+    if (result.data) return result.data;
+  } catch (error) {
+    return { error };
+  }
+};

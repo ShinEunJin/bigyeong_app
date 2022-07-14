@@ -1,10 +1,29 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 
-const DetailPresenter = () => {
+import { PhotoType } from '@/types';
+
+interface DetailProps {
+  data: PhotoType | null;
+  photoUiWidth: number;
+  photoUiHeight: number;
+}
+
+const DetailPresenter = (props: DetailProps) => {
   return (
     <View>
-      <Text>DetailPresenter</Text>
+      {props.data ? (
+        <View>
+          <Text style={{ color: 'black' }}>{props.data.title}</Text>
+          <Image
+            resizeMode='contain'
+            style={{ width: props.photoUiWidth, height: props.photoUiHeight }}
+            source={{ uri: props.data.imageUri }}
+          />
+        </View>
+      ) : (
+        <View></View>
+      )}
     </View>
   );
 };
